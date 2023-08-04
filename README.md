@@ -6,7 +6,7 @@ Data Source: https://www.kaggle.com/datasets/fedesoriano/spanish-wine-quality-da
 
 Using the data source provided by Kaggle.com, we need to build a model that can accurately predict the price of a bottle of wine. 
 
-# Data dictionary:
+## Data dictionary:
 
 The following list is the data dictionary: 
 - winery: Winery name
@@ -39,7 +39,7 @@ There is a moderate correlation between the wine's rating and Price. Higher-rate
 Sherry has the highest average price of all wine types. See figure 2. The second most expensive wine is almost half the price.
 ![Alt text](image-1.png)
 
-#Initial Findings
+# Initial Findings
 
 ## Regression Model tuning and Testing
 All models performed less than ideal. Not one regression model, tuned or not tuned, had an R^2 value of `50%` when modeled on Test data. Of the four models I tested, the Tuned KNN model performed the best. However, the lower R^2 score of `32%` and an MAE value of `$72.15`` means there is high bias in the results.
@@ -58,7 +58,7 @@ I created and evaluated two Logistical Regression (LR) models: (1) A default LR 
 
 The Tuned LR model produced the best results. For this model, it's important that we have accurate True Positive and True Negative rates. The tuned LR model produced True Positives `85%` of the time and True Negatives `83%` of the time. While the Default LR model produced more accurate True Negative predictions, its True Positive performance was significantly below the Tuned LR model's performance with only `57%`.
 
-# Recommendation: 
+# Recommendations: 
 
 As a result of these evaluations, here are my recommendations:
 
