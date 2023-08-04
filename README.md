@@ -38,3 +38,31 @@ There is a moderate correlation between the wine's rating and Price. Higher-rate
 ## Trend 2. Sherry commands the highest price.
 Sherry has the highest average price of all wine types. See figure 2. The second most expensive wine is almost half the price.
 ![Alt text](image-1.png)
+
+#Initial Findings
+
+## Regression Model tuning and Testing
+All models performed less than ideal. Not one regression model, tuned or not tuned, had an R^2 value of `50%` when modeled on Test data. Of the four models I tested, the Tuned KNN model performed the best. However, the lower R^2 score of `32%` and an MAE value of `$72.15`` means there is high bias in the results.
+
+My recommendation is not to deploy any of these models into production without first testing on a larger data set with additional features that may influence the ability to predict price.
+
+## Classification testing to predict if a wine bottle will be above average
+
+Based on the results of the regression models, I tried a simpler classification model that will try to predict if a wine will cost more than the average cost of the data set or less. See the V2 model in GitHub for those results. 
+
+For this model, I separated `price` into two values: 
+1. `IsExpensive=0`: The bottle costs less than the average price from the data set.
+2. `IsExpensive=1`: The bottle costs more than the average price from the data set.
+
+I created and evaluated two Logistical Regression (LR) models: (1) A default LR model and (2) a tuned LR model. 
+
+The Tuned LR model produced the best results. For this model, it's important that we have accurate True Positive and True Negative rates. The tuned LR model produced True Positives `85%` of the time and True Negatives `83%` of the time. While the Default LR model produced more accurate True Negative predictions, its True Positive performance was significantly below the Tuned LR model's performance with only `57%`.
+
+# Recommendation: 
+
+As a result of these evaluations, here are my recommendations:
+
+1. To create a more accurate regression model, we need to pull in more data that might help increase the accuracy and reliability of the models. The results are not good enough for production at this point. 
+
+2. Start by deploying the tuned LR model that classifies the wine as above or below the average cost. This first model could help classify where specific wines would be sold. For example, more expensive wines would be sold in more high-end establishments like restaurants and high-end grocers.
+
